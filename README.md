@@ -11,15 +11,15 @@ A small script to get or set the keyboard backlight via UPower (for LXQt on X11)
 
 ### Usage
 
-- Increase brightness by 15: `kbd_backlight +15`
-- Decrease brightness by 15: `kbd_backlight -15`
-- Set an absolute brightness value (integer): `kbd_backlight 150`
+- Increase keyboard backlight by 15: `kbd_backlight +15`
+- Decrease keyboard backlight by 15: `kbd_backlight -15`
+- Set an absolute keyboard backlight value (integer): `kbd_backlight 150`
 
 ### Integration with LXQt
 
 - Open LXQt Global Actions (lxqt-config-globalkeyshortcuts).
-- Create a keyboard shortcut to increase brightness, command: `kbd_backlight +15`
-- Create a keyboard shortcut to decrease brightness, command: `kbd_backlight -15`
+- Create a keyboard shortcut to increase backlight, command: `kbd_backlight +15`
+- Create a keyboard shortcut to decrease backlight, command: `kbd_backlight -15`
 
 ### Notes
 
