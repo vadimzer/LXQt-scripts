@@ -4,7 +4,7 @@ argument="$1"
 
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
   cat <<'USAGE'
-Usage: keyboard-backlight <n|+n|-n>
+Usage: kbd_backlight <n|+n|-n>
   n     — set absolute backlight to n
   +n/-n — increase/decrease current backlight by n
 
