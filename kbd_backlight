@@ -9,9 +9,9 @@ Usage: kbd_backlight <n|+n|-n>
   +n/-n — increase/decrease current backlight by n
 
 Examples:
-  keyboard-backlight 100    # set backlight to 100
-  keyboard-backlight +10    # increase by 10
-  keyboard-backlight -2     # decrease by 2
+  kbd_backlight 100    # set backlight to 100
+  kbd_backlight +10    # increase by 10
+  kbd_backlight -2     # decrease by 2
 USAGE
   exit 0
 fi
