@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+argument="$1"
+
+if [[ "$1" == "-h" || "$1" == "--help" ]]; then
+  cat <<'USAGE'
+Usage: keyboard-backlight <n|+n|-n>
+  n     — set absolute brightness to n
+  +n/-n — increase/decrease current brightness by n
+
+Examples:
+  keyboard-backlight 100    # set brightness to 100
+  keyboard-backlight +10    # increase by 10
+  keyboard-backlight -2     # decrease by 2
+USAGE
+  exit 0
+fi
+ 
+if [[ $argument =~ ^[+-]?[0-9]+$ ]]; then
+    :
+else
+    exit 1
+fi
+
+CURRENT_BRIGHTNESS=$(gdbus call --system --dest org.freedesktop.UPower \
+  --object-path /org/freedesktop/UPower/KbdBacklight \
+  --method org.freedesktop.UPower.KbdBacklight.GetBrightness | tr -d '(),')
+MAX_BRIGHTNESS=$(gdbus call --system --dest org.freedesktop.UPower \
+  --object-path /org/freedesktop/UPower/KbdBacklight \
+  --method org.freedesktop.UPower.KbdBacklight.GetMaxBrightness | tr -d '(),')
+MIN_BRIGHTNESS=0
+
+if [[ $argument == [+\-]* ]]; then
+    SET_BRIGHTNESS=$((CURRENT_BRIGHTNESS + argument))
+else
+    SET_BRIGHTNESS=$argument
+fi
+
+if (( SET_BRIGHTNESS > MAX_BRIGHTNESS )); then
+    SET_BRIGHTNESS=$MAX_BRIGHTNESS
+elif (( SET_BRIGHTNESS < MIN_BRIGHTNESS )); then
+    SET_BRIGHTNESS=$MIN_BRIGHTNESS
+fi
+
+if [[ "$CURRENT_BRIGHTNESS" == "$SET_BRIGHTNESS" ]]; then
+    :
+else
+    result=$(gdbus call --system --dest org.freedesktop.UPower \
+      --object-path /org/freedesktop/UPower/KbdBacklight \
+      --method org.freedesktop.UPower.KbdBacklight.SetBrightness "$SET_BRIGHTNESS")
+fi
+
+exit 0
