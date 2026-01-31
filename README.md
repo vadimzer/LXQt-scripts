@@ -2,9 +2,27 @@
 
 ## kbd_backlight
 
-Script for change and set keyboard backlight in LXQt in X11.
+A small script to get or set the keyboard backlight via UPower (for LXQt on X11).
 
-- Add script to `~\.local\bin` directory
-- Add that dir to your `$PATH`
-- Open `lxqt-config-globalkeyshortcuts` and add for increase brigtness `kbd_backlight +15` for decrease brightness `kbd_backlight -15`
-- For set any available value for keyboard backlight call `kbd_backlight 150`, where 150 any integer value
+### Installation
+
+- Copy the script to `~/.local/bin`
+- Ensure `~/.local/bin` is in your `PATH` (add to `~/.profile` or `~/.bashrc` if needed).
+
+### Usage
+
+- Increase brightness by 15: kbd_backlight +15
+- Decrease brightness by 15: kbd_backlight -15
+- Set an absolute brightness value (integer): kbd_backlight 150
+
+### Integration with LXQt
+
+- Open LXQt Global Actions (lxqt-config-globalkeyshortcuts).
+- Create a keyboard shortcut to increase brightness, command: `kbd_backlight +15`
+- Create a keyboard shortcut to decrease brightness, command: `kbd_backlight -15`
+
+### Notes
+
+- The script requires gdbus and access to the system D-Bus org.freedesktop.UPower KbdBacklight object.
+- Argument must be an integer, optionally prefixed with + or - for relative changes.
+- The value will be clamped to the device-supported range.
