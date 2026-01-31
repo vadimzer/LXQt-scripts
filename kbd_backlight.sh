@@ -5,11 +5,11 @@ argument="$1"
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then
   cat <<'USAGE'
 Usage: keyboard-backlight <n|+n|-n>
-  n     — set absolute brightness to n
-  +n/-n — increase/decrease current brightness by n
+  n     — set absolute backlight to n
+  +n/-n — increase/decrease current backlight by n
 
 Examples:
-  keyboard-backlight 100    # set brightness to 100
+  keyboard-backlight 100    # set backlight to 100
   keyboard-backlight +10    # increase by 10
   keyboard-backlight -2     # decrease by 2
 USAGE
